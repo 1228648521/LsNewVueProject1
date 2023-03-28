@@ -20,7 +20,7 @@
         <input type="number" v-model="budget">
         <label>地点：</label>
         <input type="text" v-model="location">
-        <label>天数：</label>
+        <label>天：</label>
         <input type="number" v-model="days">
         <button @click="submitForm">提交</button>
       </div>
