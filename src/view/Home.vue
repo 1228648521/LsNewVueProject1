@@ -2,143 +2,76 @@
  * @Author: ls shuai.lu@goodark.com
  * @Date: 2023-03-22 14:17:17
  * @LastEditors: ls shuai.lu@goodark.com
- * @LastEditTime: 2023-03-29 10:14:25
+ * @LastEditTime: 2023-03-29 15:24:25
  * @FilePath: \vueproject2\src\view\login.vue
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
+-->
 
- <template>
-  <div>
-    <header>
-      <nav>
-        <ul>
-          <li><a href="#">Home</a></li>
-          <li><a href="#">About</a></li>
-          <li><a href="#">Services</a></li>
-          <li><a href="#">Contact</a></li>
-        </ul>
-      </nav>
-    </header>
-    <main>
-      <section class="hero">
-        <h1>Welcome to my website</h1>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus sollicitudin, ante eu gravida imperdiet, dolor quam ornare nisi, nec sollicitudin lorem est vel dui.</p>
-        <button>Learn More</button>
-      </section>
-      <section class="features">
-        <div class="feature">
-          <img src="image1.jpg" alt="Feature 1">
-          <h2>Feature 1</h2>
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus sollicitudin, ante eu gravida imperdiet, dolor quam ornare nisi, nec sollicitudin lorem est vel dui.</p>
-        </div>
-        <div class="feature">
-          <img src="image2.jpg" alt="Feature 2">
-          <h2>Feature 2</h2>
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus sollicitudin, ante eu gravida imperdiet, dolor quam ornare nisi, nec sollicitudin lorem est vel dui.</p>
-        </div>
-        <div class="feature">
-          <img src="image3.jpg" alt="Feature 3">
-          <h2>Feature 3</h2>
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus sollicitudin, ante eu gravida imperdiet, dolor quam ornare nisi, nec sollicitudin lorem est vel dui.</p>
-        </div>
-      </section>
-    </main>
-    <footer>
-      <p>&copy; 2023 My Website</p>
-    </footer>
-  </div>
-</template>
-
-<script>
-export default {
-  name: 'App'
-}
-</script>
-
-<style>
-/* Reset default browser styles */
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
-
-/* Set up basic page styles */
-body {
-  font-family: "Arial", sans-serif;
-}
-
-header {
-  background-color: #222;
-  color: #fff;
-  padding: 1rem;
-}
-
-nav {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-nav ul {
-  list-style: none;
-  display: flex;
-}
-
-nav ul li {
-  margin-right: 1rem;
-}
-
-nav ul li a {
-  color: #fff;
-  text-decoration: none;
-}
-
-main {
-  padding: 2rem;
-}
-
-.hero {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  background-color: #ccc;
-  height: 60vh;
-}
-
-.hero h1 {
-  font-size: 4rem;
-  margin-bottom: 1rem;
-}
-
-.hero p {
-  margin-bottom: 1.5rem;
-}
- </style> -->
  <template>
   <div>
     <div class="search-bar">
       <input type="text" placeholder="输入关键词搜索">
       <button>搜索</button>
     </div>
-  <div class="image-container">
-  <img v-for="(image, index) in images" :key="index" :src="image" :class="{ active: index === currentIndex }" />
-</div>
-</div>
 
+  <el-container>
+    <el-aside width="700px">
+      <div class="hot-recommendation">
+    <el-tabs v-model="activeTab">
+      <el-tab-pane label="电影" name="movie">
+        <div class="movie-recommendation">
+          <!-- 电影推荐内容 -->
+        </div>
+      </el-tab-pane>
+      <el-tab-pane label="图书" name="book">
+        <div class="book-recommendation">
+          <!-- 图书推荐内容 -->
+        </div>
+      </el-tab-pane>
+      <el-tab-pane label="音乐" name="music">
+        <div class="music-recommendation">
+          <!-- 音乐推荐内容 -->
+        </div>
+      </el-tab-pane>
+      <el-tab-pane label="美食" name="food">
+        <div class="food-recommendation">
+          <!-- 美食推荐内容 -->
+        </div>
+      </el-tab-pane>
+    </el-tabs>
+  </div>
+    </el-aside>
+    <el-aside width="700px">Aside1</el-aside>
+  </el-container>
+
+  <el-container>
+    <el-main>
+      <el-carousel  type="card" :interval = "4000"  height = "200px" class="carousel">
+        <el-carousel-item v-for="item in items" :key="item.id">
+        <img :src="item.image" alt="">
+        </el-carousel-item>
+      </el-carousel>
+    </el-main>
+  </el-container>
+
+  </div>
 </template>
 
 <script>
+import jpg from '@/assets/1.jpg'
+import jpg1 from '@/assets/2.jpg'
+import jpg2 from '@/assets/3.jpg'
+import jpg3 from '@/assets/4.jpg'
+
 export default {
   data () {
     return {
-      // recommendations: ['推荐1', '推荐2', '推荐3', '推荐4', '推荐5'],
-      images: ['./image/1.jpg', '@/image/2.jpg'],
-      budget: null,
-      currentIndex: 0,
-      location: '',
-      days: null
+      items: [
+        { id: 1, image: jpg },
+        { id: 2, image: jpg1 },
+        { id: 3, image: jpg2 },
+        { id: 4, image: jpg3 }
+      ]
     }
   },
   methods: {
@@ -150,15 +83,8 @@ export default {
         days: this.days
       })
     }
-  },
-  created () {
-    this.timer = setInterval(() => {
-      this.currentIndex = (this.currentIndex + 1) % this.images.length
-    }, 2000)
-  },
-  beforeDestroy () {
-    clearInterval(this.timer)
   }
+
 }
 </script>
 
@@ -223,18 +149,31 @@ export default {
   margin: 50px 0;
 }
 
-.image-container img {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  transition: transform 1s;
-}
-.image-container img.active {
-  transform: translateX(0%);
-}
-.image-container img:not(.active) {
-  transform: translateX(-100%);
-}
+  .el-carousel__item h3 {
+    color: #475669;
+    font-size: 18px;
+    opacity: 0.75;
+    line-height: 300px;
+    margin: 0;
+  }
+
+  .el-carousel__item:nth-child(2n) {
+    background-color: #99a9bf;
+  }
+
+  .el-carousel__item:nth-child(2n+1) {
+    background-color: #d3dce6;
+  }
+
+  .carousel{
+    align-items:center
+  }
+
+  .el-aside {
+    background-color: #D3DCE6;
+    color: #333;
+    line-height: 300px;
+    margin-left: 40px;
+  }
+
 </style>
