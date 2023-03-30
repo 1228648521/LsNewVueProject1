@@ -2,7 +2,7 @@
  * @Author: ls shuai.lu@goodark.com
  * @Date: 2023-03-22 14:17:17
  * @LastEditors: ls shuai.lu@goodark.com
- * @LastEditTime: 2023-03-30 13:33:19
+ * @LastEditTime: 2023-03-30 14:03:15
  * @FilePath: \vueproject2\src\view\login.vue
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
 -->
@@ -18,24 +18,22 @@
     <el-aside width="700px">
       <div class="hot-recommendation">
     <el-tabs>
-      <el-tab-pane label="人少推荐" name="movie">
+      <el-tab-pane label="人少推荐" name="movie" >
         <div class="map-container" ref="mapContainer">
 
         </div>
       </el-tab-pane>
       <el-tab-pane label="优选推荐" name="book">
         <div class="book-recommendation">
-          <!-- 图书推荐内容 -->sss
+         sss
         </div>
       </el-tab-pane>
       <el-tab-pane label="标签3" name="music">
         <div class="music-recommendation">
-          <!-- 音乐推荐内容 -->
         </div>
       </el-tab-pane>
       <el-tab-pane label="标签4" name="food">
         <div class="food-recommendation">
-          <!-- 美食推荐内容 -->
         </div>
       </el-tab-pane>
     </el-tabs>
@@ -90,7 +88,6 @@ export default {
     this.drawMap()
   },
   methods: {
-
     drawMap () {
       this.chart.setOption({
         series: [{
