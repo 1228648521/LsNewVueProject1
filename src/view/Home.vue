@@ -2,7 +2,7 @@
  * @Author: ls shuai.lu@goodark.com
  * @Date: 2023-03-22 14:17:17
  * @LastEditors: ls shuai.lu@goodark.com
- * @LastEditTime: 2023-03-29 16:28:04
+ * @LastEditTime: 2023-03-30 10:20:07
  * @FilePath: \vueproject2\src\view\login.vue
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
 -->
@@ -18,22 +18,22 @@
     <el-aside width="700px">
       <div class="hot-recommendation">
     <el-tabs v-model="activeTab">
-      <el-tab-pane label="电影" name="movie">
+      <el-tab-pane label="人少推荐" name="movie">
         <div class="movie-recommendation">
           <!-- 电影推荐内容 -->
         </div>
       </el-tab-pane>
-      <el-tab-pane label="图书" name="book">
+      <el-tab-pane label="优选推荐" name="book">
         <div class="book-recommendation">
-          <!-- 图书推荐内容 -->
+          <!-- 图书推荐内容 -->sss
         </div>
       </el-tab-pane>
-      <el-tab-pane label="音乐" name="music">
+      <el-tab-pane label="标签3" name="music">
         <div class="music-recommendation">
           <!-- 音乐推荐内容 -->
         </div>
       </el-tab-pane>
-      <el-tab-pane label="美食" name="food">
+      <el-tab-pane label="标签4" name="food">
         <div class="food-recommendation">
           <!-- 美食推荐内容 -->
         </div>
@@ -52,7 +52,7 @@
 
   <el-container>
     <el-main>
-      <el-carousel  type="card" :interval = "4000"  height = "200px" class="carousel">
+      <el-carousel  type="card" :interval = "4000"  height = "280px" class="carousel">
         <el-carousel-item v-for="item in items" :key="item.id">
         <img :src="item.image" alt="">
         </el-carousel-item>
