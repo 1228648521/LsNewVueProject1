@@ -2,7 +2,7 @@
  * @Author: ls shuai.lu@goodark.com
  * @Date: 2023-03-22 14:17:17
  * @LastEditors: ls shuai.lu@goodark.com
- * @LastEditTime: 2023-03-30 11:21:09
+ * @LastEditTime: 2023-03-30 13:33:19
  * @FilePath: \vueproject2\src\view\login.vue
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
 -->
@@ -17,7 +17,7 @@
   <el-container>
     <el-aside width="700px">
       <div class="hot-recommendation">
-    <el-tabs v-model="activeTab">
+    <el-tabs>
       <el-tab-pane label="人少推荐" name="movie">
         <div class="map-container" ref="mapContainer">
 
@@ -42,7 +42,7 @@
   </div>
     </el-aside>
     <el-aside width="700px">
-      <el-tabs v-model="activeTab">
+      <el-tabs v-model="activeTab1">
       <el-tab-pane label="标签页 1">这是标签页 1 的内容</el-tab-pane>
       <el-tab-pane label="标签页 2">这是标签页 2 的内容</el-tab-pane>
       <el-tab-pane label="标签页 3">这是标签页 3 的内容</el-tab-pane>
@@ -69,6 +69,7 @@ import jpg1 from '@/assets/2.jpg'
 import jpg2 from '@/assets/3.jpg'
 import jpg3 from '@/assets/4.jpg'
 import echarts from 'echarts'
+import 'echarts/map/js/world.js'
 
 export default {
   name: 'MapComponent',
@@ -89,14 +90,7 @@ export default {
     this.drawMap()
   },
   methods: {
-    submitForm () {
-    // 处理表单提交逻辑
-      console.log('提交表单：', {
-        budget: this.budget,
-        location: this.location,
-        days: this.days
-      })
-    },
+
     drawMap () {
       this.chart.setOption({
         series: [{
