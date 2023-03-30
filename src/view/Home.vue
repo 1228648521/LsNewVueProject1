@@ -2,7 +2,7 @@
  * @Author: ls shuai.lu@goodark.com
  * @Date: 2023-03-22 14:17:17
  * @LastEditors: ls shuai.lu@goodark.com
- * @LastEditTime: 2023-03-29 15:24:25
+ * @LastEditTime: 2023-03-29 16:28:04
  * @FilePath: \vueproject2\src\view\login.vue
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
 -->
@@ -41,7 +41,13 @@
     </el-tabs>
   </div>
     </el-aside>
-    <el-aside width="700px">Aside1</el-aside>
+    <el-aside width="700px">
+      <el-tabs v-model="activeTab">
+      <el-tab-pane label="标签页 1">这是标签页 1 的内容</el-tab-pane>
+      <el-tab-pane label="标签页 2">这是标签页 2 的内容</el-tab-pane>
+      <el-tab-pane label="标签页 3">这是标签页 3 的内容</el-tab-pane>
+    </el-tabs>
+</el-aside>
   </el-container>
 
   <el-container>
@@ -172,7 +178,8 @@ export default {
   .el-aside {
     background-color: #D3DCE6;
     color: #333;
-    line-height: 300px;
+    height: 300px;
+
     margin-left: 40px;
   }
 
