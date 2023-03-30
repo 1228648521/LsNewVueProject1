@@ -2,7 +2,7 @@
  * @Author: ls shuai.lu@goodark.com
  * @Date: 2023-03-22 14:17:17
  * @LastEditors: ls shuai.lu@goodark.com
- * @LastEditTime: 2023-03-30 10:20:07
+ * @LastEditTime: 2023-03-30 11:21:09
  * @FilePath: \vueproject2\src\view\login.vue
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
 -->
@@ -19,8 +19,8 @@
       <div class="hot-recommendation">
     <el-tabs v-model="activeTab">
       <el-tab-pane label="人少推荐" name="movie">
-        <div class="movie-recommendation">
-          <!-- 电影推荐内容 -->
+        <div class="map-container" ref="mapContainer">
+
         </div>
       </el-tab-pane>
       <el-tab-pane label="优选推荐" name="book">
@@ -68,8 +68,10 @@ import jpg from '@/assets/1.jpg'
 import jpg1 from '@/assets/2.jpg'
 import jpg2 from '@/assets/3.jpg'
 import jpg3 from '@/assets/4.jpg'
+import echarts from 'echarts'
 
 export default {
+  name: 'MapComponent',
   data () {
     return {
       items: [
@@ -77,8 +79,14 @@ export default {
         { id: 2, image: jpg1 },
         { id: 3, image: jpg2 },
         { id: 4, image: jpg3 }
-      ]
+      ],
+      chart: null // 用于存储ECharts实例
     }
+  },
+  created () {
+    // 初始化地图
+    this.chart = echarts.init(this.$refs.mapContainer)
+    this.drawMap()
   },
   methods: {
     submitForm () {
@@ -87,6 +95,27 @@ export default {
         budget: this.budget,
         location: this.location,
         days: this.days
+      })
+    },
+    drawMap () {
+      this.chart.setOption({
+        series: [{
+          type: 'map',
+          mapType: 'china',
+          roam: true,
+          label: {
+            show: true
+          },
+          itemStyle: {
+            normal: {
+              areaColor: '#323c48',
+              borderColor: '#404a59'
+            },
+            emphasis: {
+              areaColor: '#2a333d'
+            }
+          }
+        }]
       })
     }
   }
@@ -182,5 +211,10 @@ export default {
 
     margin-left: 40px;
   }
+
+  .map-container {
+  width: 100%;
+  height: 500px;
+}
 
 </style>
