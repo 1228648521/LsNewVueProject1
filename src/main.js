@@ -15,7 +15,8 @@ import ElementUI from 'element-ui'
 import echarts from 'echarts'
 import 'element-ui/lib/theme-chalk/index.css'
 import china from 'echarts/map/json/china.json'
-
+// import BaiduMap from 'vue-baidu-map'
+// 百度地图API
 Vue.use(ElementUI)
 Vue.prototype.$echarts = echarts
 echarts.registerMap('china', china)
