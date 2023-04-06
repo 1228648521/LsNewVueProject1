@@ -1,11 +1,11 @@
 <template>
     <div class="header" :style="{ backgroundColor: bgColor }">
       <el-row class="row">
-        <el-col :span="6">
+        <el-col :span="3">
           <h1 class="logo">LOGO</h1>
         </el-col>
         <el-col :span="12" class="menu">
-          <el-menu mode="horizontal" :default-active="activeIndex" class="el-menu-demo" background-color="transparent" text-color="#fff" active-text-color="#ffd04b">
+          <el-menu mode="horizontal" :default-active="activeIndex" class="el-menu-demo" background-color="transparent" text-color="#fff" active-text-color="#ccc">
             <el-menu-item index="1">首页</el-menu-item>
             <el-menu-item index="2">分类</el-menu-item>
             <el-menu-item index="3">标签</el-menu-item>
@@ -15,9 +15,9 @@
         <el-col :span="6" class="search">
           <el-input placeholder="请输入搜索关键字" suffix-icon="el-icon-search"></el-input>
         </el-col>
-        <el-col :span="24">
+        <el-col :span="6">
           <div class="header-right">
-            <el-button type="text" size="medium" class="login">登录</el-button>
+            <el-button type="primary" size="medium" class="login">登录</el-button>
             <el-button type="primary" size="medium" class="register">注册</el-button>
             <el-dropdown trigger="click" class="dropdown">
               <span class="el-dropdown-link">
@@ -31,6 +31,7 @@
               </el-dropdown-menu>
             </el-dropdown>
           </div>
+
         </el-col>
       </el-row>
     </div>

@@ -2,7 +2,7 @@
  * @Author: ls shuai.lu@goodark.com
  * @Date: 2023-03-22 14:17:17
  * @LastEditors: ls shuai.lu@goodark.com
- * @LastEditTime: 2023-04-03 16:07:45
+ * @LastEditTime: 2023-04-04 10:37:33
  * @FilePath: \vueproject2\src\view\login.vue
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
 -->
@@ -11,7 +11,7 @@
       <NavigationBar />
     <el-row :gutter="12" style="margin:20px">
       <el-col :lg="11" :md="12" :sm="24">
-        <el-tabs v-model="activeTab1"  >
+        <el-tabs v-model="activeTab1">
       <el-tab-pane label="热门推荐" name="HotCity" >
         <hot-city />
       </el-tab-pane>
@@ -40,7 +40,7 @@
 
   <el-container>
     <el-main>
-      <el-carousel  type="card" :interval = "4000"  height = "280px" class="carousel">
+      <el-carousel  type="card" :interval = "4000000"  height = "280px" class="carousel">
         <el-carousel-item v-for="item in items" :key="item.id">
         <img :src="item.image" alt="">
         </el-carousel-item>
