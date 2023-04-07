@@ -1,58 +1,25 @@
 <template>
-  <div class="div">
-    <el-select v-model="selectedOption1" placeholder="请选择" @change="handleChange(selectedOption1)">
-      <el-option
-        v-for="option in options1"
-        :key="option.value"
-        :label="option.label"
-        :value="option.value">
-        <div class="option-wrapper">
-          <div class="option-label">{{ option.label }}</div>
-          <div class="option-details">
-            <div>人流量：{{ option.traffic }}</div>
-            <div>是否好走：{{ option.easyToGo ? '是' : '否' }}</div>
-            <div>是否会错过：{{ option.missable ? '是' : '否' }}</div>
-          </div>
-        </div>
-      </el-option>
+  <div class="container">
+    <h2>选择旅游景点</h2>
+    <el-select v-model="traffic" placeholder="人流量" size="mini">
+      <el-option label="少" value="low"></el-option>
+      <el-option label="中等" value="medium"></el-option>
+      <el-option label="多" value="high"></el-option>
     </el-select>
-
-    <el-select v-model="selectedOption2" placeholder="请选择" @change="handleChange(selectedOption2)">
-      <el-option
-        v-for="option in options2"
-        :key="option.value"
-        :label="option.label"
-        :value="option.value">
-        <div class="option-wrapper">
-          <div class="option-label">{{ option.label }}</div>
-          <div class="option-details">
-            <div>人流量：{{ option.traffic }}</div>
-            <div>是否好走：{{ option.easyToGo ? '是' : '否' }}</div>
-            <div>是否会错过：{{ option.missable ? '是' : '否' }}</div>
-          </div>
-        </div>
-      </el-option>
+    <el-select v-model="ease" placeholder="路线难易度" size="mini">
+      <el-option label="较难" value="difficult"></el-option>
+      <el-option label="一般" value="moderate"></el-option>
+      <el-option label="容易" value="easy"></el-option>
     </el-select>
-
-    <el-select v-model="selectedOption3" placeholder="请选择" @change="handleChange(selectedOption3)">
-      <el-option
-        v-for="option in options3"
-        :key="option.value"
-        :label="option.label"
-        :value="option.value">
-        <div class="option-wrapper">
-          <div class="option-label">{{ option.label }}</div>
-          <div class="option-details">
-            <div>人流量：{{ option.traffic }}</div>
-            <div>是否好走：{{ option.easyToGo ? '是' : '否' }}</div>
-            <div>是否会错过：{{ option.missable ? '是' : '否' }}</div>
-          </div>
-        </div>
-      </el-option>
+    <el-select v-model="time" placeholder="游玩时间" size="mini">
+      <el-option label="半天以内" value="short"></el-option>
+      <el-option label="一天以内" value="medium"></el-option>
+      <el-option label="一天以上" value="long"></el-option>
     </el-select>
-
-    <div class="result" v-if="result">
-      提交的结果为：{{ result }}
+    <el-button type="primary" @click="submit" size="mini">提交</el-button>
+    <div v-if="showResult" class="result-container">
+      <h3>{{ result.title }}</h3>
+      <p>{{ result.description }}</p>
     </div>
   </div>
 </template>
@@ -61,66 +28,66 @@
 export default {
   data () {
     return {
-      selectedOption1: '',
-      selectedOption2: '',
-      selectedOption3: '',
-      options1: [
-        { label: '选项一', value: 'option1', traffic: 100, easyToGo: true, missable: false },
-        { label: '选项二', value: 'option2', traffic: 50, easyToGo: false, missable: true },
-        { label: '选项三', value: 'option3', traffic: 200, easyToGo: true, missable: true },
-        { label: '选项四', value: 'option4', traffic: 30, easyToGo: false, missable: false }
-      ],
-      options2: [
-        { label: '选项一', value: 'option1', traffic: 150, easyToGo: false, missable: true },
-        { label: '选项二', value: 'option2', traffic: 80, easyToGo: true, missable: false },
-        { label: '选项三', value: 'option3', traffic: 120, easyToGo: false, missable: true },
-        { label: '选项四', value: 'option4', traffic: 50, easyToGo: true, missable: false }
-      ],
-      options3: [
-        { label: '选项一', value: 'option1', traffic: 70, easyToGo: true, missable: false },
-        { label: '选项二', value: 'option2', traffic: 40, easyToGo: false, missable: false },
-        { label: '选项三', value: 'option3', traffic: 90, easyToGo: true, missable: true },
-        { label: '选项四', value: 'option4', traffic: 120, easyToGo: false, missable: true }
-      ],
-      result: ''
+      traffic: '',
+      ease: '',
+      time: '',
+      showResult: false,
+      result: {}
     }
   },
   methods: {
-    handleChange (value) {
-      if (value === 'option1') {
-        this.result = '您选择的是选项一'
-      } else if (value === 'option2') {
-        this.result = '您选择的是选项二'
-      } else if (value === 'option3') {
-        this.result = '您选择的是选项三'
-      } else if (value === 'option4') {
-        this.result = '您选择的是选项四'
+    submit () {
+      if (!this.traffic || !this.ease || !this.time) {
+        this.$message.error('请选择所有选项')
+        return
       }
+
+      let title = ''
+      let description = ''
+      if (this.traffic === 'low' && this.ease === 'easy' && this.time === 'short') {
+        title = '西湖'
+        description = '杭州市区著名的风景名胜区，有着丰富的人文历史和自然景观'
+      } else if (this.traffic === 'medium' && this.ease === 'moderate' && this.time === 'medium') {
+        title = '千岛湖'
+        description = '中国南方著名的大型水库和风景区，以其独特的千岛湖水系著名'
+      } else if (this.traffic === 'high' && this.ease === 'difficult' && this.time === 'long') {
+        title = '峨眉山'
+        description = '四川省境内的一座名山，以其险峻的山势、多姿多彩的景观和悠久的历史文化而闻名于世'
+      } else {
+        title = '无合适景点'
+        description = '根据您的选择，目前没有合适的旅游景点'
+      }
+
+      this.result = {
+        title: title,
+        description: description
+      }
+      this.showResult = true
     }
   }
 }
 </script>
 
 <style scoped>
-.option-wrapper {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+.container {
+  display: inline;
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 20px;
 }
-
-.option-details {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: flex-end;
-}
-
-.result {
+.result-container {
   margin-top: 20px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  padding: 20px;
+  background-color: #f5f5f5;
 }
-
-.div {
-  display: inline-block;
-
+.result-container h3 {
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+.result-container p {
+  font-size: 16px;
+  line-height: 1.6;
 }
 </style>
