@@ -2,7 +2,7 @@
  * @Author: ls shuai.lu@goodark.com
  * @Date: 2023-03-22 14:17:17
  * @LastEditors: ls shuai.lu@goodark.com
- * @LastEditTime: 2023-04-04 10:37:33
+ * @LastEditTime: 2023-04-07 09:34:54
  * @FilePath: \vueproject2\src\view\login.vue
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
 -->
@@ -15,12 +15,9 @@
       <el-tab-pane label="热门推荐" name="HotCity" >
         <hot-city />
       </el-tab-pane>
-      <el-tab-pane label="三维定位" name="3DLocation">
-
-      </el-tab-pane>
       <el-tab-pane label="标签3" name="music">
-        <div class="music-recommendation">
-        </div>
+        <TravelSelect />
+
       </el-tab-pane>
       <el-tab-pane label="标签4" name="food">
         <div class="food-recommendation">
@@ -29,7 +26,7 @@
     </el-tabs>
       </el-col>
       <el-col :lg="11" :md="12" :sm="24">
-        <el-tabs v-model="activeTab2"  >
+        <el-tabs v-model="activeTab2" style="margin-left: 20px;" >
       <el-tab-pane label="标签页 1" name="first">这是标签页 1 的内容</el-tab-pane>
       <el-tab-pane label="标签页 2" name="second">这是标签页 2 的内容</el-tab-pane>
       <el-tab-pane label="标签页 3" name="thrth">这是标签页 3 的内容</el-tab-pane>
@@ -58,9 +55,10 @@ import jpg2 from '@/assets/3.jpg'
 import jpg3 from '@/assets/4.jpg'
 import HotCity from './HotCity.vue'
 import NavigationBar from './Navigation_Bar.vue'
+import TravelSelect from './TravelSelect.vue'
 
 export default {
-  components: { HotCity, NavigationBar },
+  components: { HotCity, NavigationBar, TravelSelect },
   data () {
     return {
       items: [
